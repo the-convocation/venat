@@ -1,10 +1,30 @@
+import { DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Intents } from 'discord.js';
+
+import { BotModule } from './bot/bot.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot(),
+    DiscordModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        token: configService.get('TOKEN'),
+        discordClientOptions: {
+          intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+        },
+        registerCommandOptions: [
+          {
+            forGuild: configService.get('GUILD_ID_WITH_COMMANDS'),
+            removeCommandsBefore: true,
+          },
+        ],
+      }),
+      inject: [ConfigService],
+    }),
+    BotModule,
+  ],
 })
 export class AppModule {}
