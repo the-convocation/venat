@@ -4,6 +4,7 @@
 # compiled output
 /dist
 /node_modules
+.eslintcache
 
 # Logs
 logs
