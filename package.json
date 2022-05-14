@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "commit": "cz",
-    "build": "nest build",
+    "build": "yarn prebuild && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -93,5 +93,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "packageManager": "yarn@3.2.1"
 }
