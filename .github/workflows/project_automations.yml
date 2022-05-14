@@ -1,0 +1,23 @@
+name: Project automations
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  issue_opened:
+    name: issue_opened
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    steps:
+      - name: 'Move issue to Todo'
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.1
+        with:
+          user: the-convocation
+          project_id: 1
+          status_value: "Todo"
+          gh_app_secret_key: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_SECRET_KEY }}
+          gh_app_ID: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_ID }}
+          gh_app_installation_ID: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_INSTALLATION_ID }}
+          resource_node_id: ${{ github.event.issue.node_id }}
