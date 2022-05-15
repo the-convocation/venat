@@ -3,7 +3,6 @@
   "version": "0.0.0-semantic-release",
   "description": "",
   "author": "",
-  "private": true,
   "license": "AGPL-3.0-only",
   "main": "dist/src/module.js",
   "scripts": {
