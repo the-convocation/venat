@@ -4,3 +4,6 @@ exclude_paths:
   - ".github/**/*"
   - ".yarn/**/*"
   - "**.md"
+engines:
+  tslint:
+    allow-declarations: true

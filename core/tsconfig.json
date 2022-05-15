@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceRoot": "src",
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
   "references": []
 }

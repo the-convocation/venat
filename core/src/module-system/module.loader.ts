@@ -7,7 +7,7 @@ import { METADATA_KEY } from './venat-module.decorator';
 
 @Module({})
 export class ModuleLoader {
-  private static readonly logger = new Logger('ModuleManager');
+  private static readonly logger: Logger = new Logger('ModuleManager');
   private static loadedModuleInfo: VenatModuleMetadata[] = [];
 
   public static get loadedModules(): VenatModuleMetadata[] {
@@ -98,8 +98,8 @@ export class ModuleLoader {
     ModuleLoader.logger.log(`Loading ${resolvedModules.length} modules`);
 
     return {
-      module: ModuleLoader,
       imports: resolvedModules,
+      module: ModuleLoader,
     } as DynamicModule;
   }
 }
