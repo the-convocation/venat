@@ -3,4 +3,5 @@ exclude_paths:
   - ".husky/**/*"
   - ".github/**/*"
   - ".yarn/**/*"
+  - "build-scripts/**/*"
   - "**.md"
