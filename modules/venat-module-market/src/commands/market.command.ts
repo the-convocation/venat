@@ -13,14 +13,16 @@ import { table } from 'table';
 import { MarketDto } from '../dto/market.dto';
 
 @Command({
-  name: 'market',
   description: 'Look up prices for an item on the market board.',
+  name: 'market',
 })
 @UsePipes(TransformPipe)
 export class MarketCommand implements DiscordTransformedCommand<MarketDto> {
   private readonly logger: Logger = new Logger('MarketCommand');
 
-  async handler(@Payload() dto: MarketDto): Promise<InteractionReplyOptions> {
+  public async handler(
+    @Payload() dto: MarketDto,
+  ): Promise<InteractionReplyOptions> {
     const itemLookup = await getItemIdByName(dto.item);
     if (itemLookup.err != null) {
       this.logger.error(itemLookup.err.message, itemLookup.err.stack);

@@ -5,7 +5,7 @@ interface TextParameter {
   value: string;
 }
 
-function cleanText({ value }: TextParameter) {
+function cleanText({ value }: TextParameter): string {
   const duplicateWhitespace = /(\s\s+)*/gm;
   return value.normalize().replaceAll(duplicateWhitespace, '').trim();
 }
@@ -13,17 +13,17 @@ function cleanText({ value }: TextParameter) {
 export class MarketDto {
   @Transform(cleanText)
   @Param({
-    name: 'item',
     description: 'The name of the item to look up prices for.',
+    name: 'item',
     required: true,
   })
-  item: string;
+  public item: string;
 
   @Transform(cleanText)
   @Param({
-    name: 'server',
     description: 'The server to look up prices on.',
+    name: 'server',
     required: true,
   })
-  server: string;
+  public server: string;
 }
