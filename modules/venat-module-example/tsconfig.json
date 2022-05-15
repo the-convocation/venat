@@ -9,6 +9,10 @@
       "@the-convocation/venat-core": [
         "../../core/dist/src",
         "../../core/src"
+      ],
+      "@the-convocation/venat-core/*": [
+        "../../core/dist/src/*",
+        "../../core/src/*"
       ]
     }
   },
