@@ -1897,7 +1897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@the-convocation/venat-core@workspace:^, @the-convocation/venat-core@workspace:core":
+"@the-convocation/venat-core@0.0.0-semantic-release, @the-convocation/venat-core@workspace:core":
   version: 0.0.0-use.local
   resolution: "@the-convocation/venat-core@workspace:core"
   languageName: unknown
@@ -1907,7 +1907,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@the-convocation/venat-module-example@workspace:modules/venat-module-example"
   dependencies:
-    "@the-convocation/venat-core": "workspace:^"
+    "@the-convocation/venat-core": 0.0.0-semantic-release
   languageName: unknown
   linkType: soft
 
