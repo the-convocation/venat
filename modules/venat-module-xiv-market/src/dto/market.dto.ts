@@ -1,14 +1,6 @@
 import { Param } from '@discord-nestjs/core';
 import { Transform } from 'class-transformer';
-
-interface TextParameter {
-  value: string;
-}
-
-function cleanText({ value }: TextParameter): string {
-  const duplicateWhitespace = /(\s\s+)*/gm;
-  return value.normalize().replaceAll(duplicateWhitespace, '').trim();
-}
+import { cleanText } from '@the-convocation/venat-core';
 
 export class MarketDto {
   @Transform(cleanText)

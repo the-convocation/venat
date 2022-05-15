@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { LookupResult } from './result';
+import { LookupResult } from '@the-convocation/venat-core';
 
 export interface XIVAPIItem {
   ID: number;
