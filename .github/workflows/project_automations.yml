@@ -14,7 +14,7 @@ jobs:
       - name: 'Move issue to Todo'
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1
         with:
-          user: the-convocation
+          organization: the-convocation
           project_id: 1
           status_value: "Todo"
           gh_app_secret_key: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_SECRET_KEY }}
