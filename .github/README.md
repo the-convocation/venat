@@ -15,7 +15,7 @@ We are working towards building this in a modular way, so that you can pick and 
 your server. This modular approach should also allow Venat to be extended to other game communities in the future.
 
 ## Warning
-Venat is in very early development and is not yet intended for use. It's available now for developers and other contributors.
+Venat is in very early development and is not yet intended for general use. It's available now for developers and other contributors.
 
 ## Development
 ### Pre-requisites
@@ -59,7 +59,7 @@ Venat is in very early development and is not yet intended for use. It's availab
 
 ### Run Bot
 1. Run `docker run -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=venat -p 5432:5432 postgres`.
-2. Run `npm run dev`.
+2. Run `yarn dev`.
 3. Verify bot is working by using the `/play` command.
 
 ## Help
