@@ -14,14 +14,53 @@ We aim to offer the following features:
 We are working towards building this in a modular way, so that you can pick and choose what features you need for 
 your server. This modular approach should also allow Venat to be extended to other game communities in the future.
 
-## Public Host
-Coming soon!
-
-## Self-Hosting
-Coming soon!
+## Warning
+Venat is in very early development and is not yet intended for use. It's available now for developers and other contributors.
 
 ## Development
-Coming soon!
+### Pre-requisites
+* Node >=16.6.0 && < 17 
+* Yarn
+* Docker
+* nvm (optional)
+
+### Setup Bot
+1. Log into discord portal: https://discord.com/developers/applications.
+2. Create new application.
+3. Select OAuth2 on left side.
+4. Select Reset Secret.
+5. Copy client secret and save for later.
+6. Select URL Generator on left side.
+7. Select the following scopes:
+   1. bot
+   2. applications.commands
+8. Select the following bot permissions:
+   1. Administrator
+9. Copy generated url for later.
+10. Select Bot on left side.
+11. Add Bot to application.
+12. Update the following settings:
+    1. Presence Intent: On 
+    2. Server Members Intent: On 
+    3. Message Content Intent: On
+13. Select the following bot permissions:
+    1. Administrator
+14. Open generated url in web browser to authorize.
+
+### Setup Workspace
+1. Fork repo https://github.com/the-convocation/venat.
+2. Clone fork to local workspace.
+3. Create copy of core/.env.example and rename to .env.
+4. Update the following env variables in .env:
+    1. Set TOKEN to the client secret from previous step.
+    2. Set GUILD_ID_WITH_COMMANDS to your discord server id.
+5. Open command line to root dir.
+6. Run `yarn install`.
+
+### Run Bot
+1. Run `docker run -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=venat -p 5432:5432 postgres`.
+2. Run `npm run dev`.
+3. Verify bot is working by using the `/play` command.
 
 ## Help
 Discord server coming soon. For now, please <a href="https://github.com/the-convocation/venat/issues">open an issue</a>.
