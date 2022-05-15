@@ -31,7 +31,7 @@ jobs:
           context: .
           file: Dockerfile.core
           push: true
-          tags: ghcr.io/the-convocation/venat:core, ghcr.io/the-convocation/venat:${{ github.ref }}-core
+          tags: ghcr.io/the-convocation/venat:core, ghcr.io/the-convocation/venat:${{ steps.meta.output.tags }}-core
           labels: ${{ steps.meta.outputs.labels }}
   full-image:
     runs-on: ubuntu-latest
@@ -60,5 +60,5 @@ jobs:
           context: .
           file: Dockerfile.core
           push: true
-          tags: ghcr.io/the-convocation/venat:latest, ghcr.io/the-convocation/venat:full, ghcr.io/the-convocation/venat:${{ github.ref }}-full
+          tags: ghcr.io/the-convocation/venat:latest, ghcr.io/the-convocation/venat:full, ghcr.io/the-convocation/venat:${{ steps.meta.output.tags }}-full
           labels: ${{ steps.meta.outputs.labels }}
