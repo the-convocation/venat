@@ -1938,9 +1938,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@the-convocation/venat-module-market@workspace:modules/venat-module-market":
+"@the-convocation/venat-module-xiv-market@workspace:modules/venat-module-xiv-market":
   version: 0.0.0-use.local
-  resolution: "@the-convocation/venat-module-market@workspace:modules/venat-module-market"
+  resolution: "@the-convocation/venat-module-xiv-market@workspace:modules/venat-module-xiv-market"
   dependencies:
     "@the-convocation/venat-core": "workspace:^"
   languageName: unknown

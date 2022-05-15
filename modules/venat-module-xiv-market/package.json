@@ -1,5 +1,5 @@
 {
-  "name": "@the-convocation/venat-module-market",
+  "name": "@the-convocation/venat-module-xiv-market",
   "version": "0.0.0-semantic-release",
   "packageManager": "yarn@3.2.1",
   "main": "dist/src/module.js",
