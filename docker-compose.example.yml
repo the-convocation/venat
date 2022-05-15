@@ -1,0 +1,34 @@
+version: '3'
+services:
+  db:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=ChangeMe123!
+      - POSTGRES_DB=venat
+    networks:
+      - venat
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  venat:
+    # Valid tags:
+    # latest, full: the full Venat distribution with all in-tree modules included
+    # core: the core Venat distribution with no modules included
+    # image: ghcr.io/the-convocation/venat:core
+    image: ghcr.io/the-convocation/venat:latest
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_NAME=venat
+      - DATABASE_PASS=ChangeMe123! # This should match the password in the db container
+      - TOKEN=YourToken # Insert your Discord bot token here
+      - GUILD_ID_WITH_COMMANDS=YourGuildId # Insert your primary Discord guild ID here
+    networks:
+      - venat
+    depends_on:
+      - db
+volumes:
+  db-data:
+networks:
+  venat:
