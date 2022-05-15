@@ -8,6 +8,7 @@
     "modules/**"
   ],
   "scripts": {
+    "clean": "yarn workspaces foreach -pt run clean",
     "build": "yarn workspaces foreach -pt run build",
     "dev": "cd core && yarn dev",
     "start": "cd core && yarn start",
