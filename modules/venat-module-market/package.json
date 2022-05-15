@@ -1,0 +1,13 @@
+{
+    "name": "@the-convocation/venat-module-market",
+    "version": "0.0.1",
+    "packageManager": "yarn@3.2.1",
+    "main": "dist/src/module.js",
+    "scripts": {
+        "clean": "rimraf dist",
+        "build": "yarn clean && tsc"
+    },
+    "dependencies": {
+        "@the-convocation/venat-core": "workspace:^"
+    }
+}

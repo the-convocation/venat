@@ -23,12 +23,15 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/event-emitter": "^1.1.1",
     "@nestjs/typeorm": "^9.0.0-next.2",
+    "@types/table": "^6.3.2",
+    "axios": "^0.27.2",
     "discord.js": "^13.6.0",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "resolve-package-path": "^4.0.3",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
+    "table": "^6.8.0",
     "typeorm": "^0.3.6"
   },
   "devDependencies": {

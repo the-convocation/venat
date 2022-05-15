@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "sourceRoot": "src",
+    "outDir": "./dist",
+    "paths": {
+      "@the-convocation/venat-core": [
+        "../../core/src",
+        "../../core/dist/src"
+      ],
+      "@the-convocation/venat-core/*": [
+        "../../core/src/*",
+        "../../core/dist/src/*"
+      ]
+    }
+  },
+  "references": []
+}
