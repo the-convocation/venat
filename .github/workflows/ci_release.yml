@@ -1,0 +1,64 @@
+name: Build Docker images
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  core-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: venatbot
+          password: ${{ secrets.GH_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ghcr.io/the-convocation/venat
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.core
+          push: true
+          tags: ghcr.io/the-convocation/venat:core, ghcr.io/the-convocation/venat:${{ steps.meta.output.tags }}-core
+          labels: ${{ steps.meta.outputs.labels }}
+  full-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: venatbot
+          password: ${{ secrets.GH_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ghcr.io/the-convocation/venat
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.core
+          push: true
+          tags: ghcr.io/the-convocation/venat:latest, ghcr.io/the-convocation/venat:full, ghcr.io/the-convocation/venat:${{ steps.meta.output.tags }}-full
+          labels: ${{ steps.meta.outputs.labels }}

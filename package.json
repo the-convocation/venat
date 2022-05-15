@@ -2,6 +2,7 @@
   "name": "venat",
   "packageManager": "yarn@3.2.1",
   "private": true,
+  "version": "0.0.0-semantic-release",
   "license": "AGPL-3.0-only",
   "workspaces": [
     "core",
@@ -13,7 +14,8 @@
     "dev": "cd core && yarn dev",
     "start": "cd core && yarn start",
     "commit": "cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "ci": "yarn build && multi-semantic-release"
   },
   "dependencies": {
     "@discord-nestjs/common": "^3.2.0",
@@ -29,7 +31,6 @@
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "resolve-package-path": "^4.0.3",
-    "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "table": "^6.8.0",
     "typeorm": "^0.3.6"
@@ -40,12 +41,19 @@
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
+    "@qiwi/multi-semantic-release": "^6.3.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/express": "^4.17.13",
     "@types/jest": "27.5.0",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "@wrench/semantic-release-ws": "^0.0.9",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.0.1",
@@ -55,6 +63,8 @@
     "jest": "28.0.3",
     "lint-staged": ">=10",
     "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^19.0.2",
     "source-map-support": "^0.5.20",
     "supertest": "^6.1.3",
     "ts-jest": "28.0.1",
@@ -62,6 +72,9 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
     "typescript": "^4.3.5"
+  },
+  "engines": {
+    "node": ">= 16.6.0"
   },
   "config": {
     "commitizen": {
