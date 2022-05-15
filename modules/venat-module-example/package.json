@@ -8,6 +8,6 @@
     "build": "yarn clean && tsc"
   },
   "dependencies": {
-    "@the-convocation/venat-core": "workspace:^"
+    "@the-convocation/venat-core": "0.0.0-semantic-release"
   }
 }
