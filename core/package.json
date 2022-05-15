@@ -1,0 +1,40 @@
+{
+  "name": "@the-convocation/venat-core",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "main": "dist/src/module.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn clean && tsc",
+    "format": "prettier --write \\\"src/**/*.ts\\\" \\\"test/**/*.ts\\\"",
+    "start": "yarn build && node ./dist/src/main.js",
+    "lint": "eslint \\\"{src,test}/**/*.ts\\\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:create": "yarn build && npx typeorm migration:generate -p -d ./dist/src/database/cli-helper.datasource.js"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  },
+  "packageManager": "yarn@3.2.1"
+}

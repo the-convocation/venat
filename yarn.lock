@@ -1163,6 +1163,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/event-emitter@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@nestjs/event-emitter@npm:1.1.1"
+  dependencies:
+    eventemitter2: 6.4.5
+  peerDependencies:
+    "@nestjs/common": ^7.0.0 || ^8.0.0
+    "@nestjs/core": ^7.0.0 || ^8.0.0
+    reflect-metadata: ^0.1.12
+  checksum: 95e4164c4914b55325ffae7ab0edc430526c9472239067e9ed70122d53e229018c5f50a9707300f65e68931d49bcef1e0e76b1e3f4ffa6e2541d033dd71fcba0
+  languageName: node
+  linkType: hard
+
 "@nestjs/mapped-types@npm:1.0.1":
   version: 1.0.1
   resolution: "@nestjs/mapped-types@npm:1.0.1"
@@ -1335,6 +1348,63 @@ __metadata:
   checksum: 5d80554b84ed15747fcfa6e488ef794c610c08152a53ebac0f270574ad938cdf39a02de7dfba4e9d9c33a790368f819945d315ee6dae360b220c29e092cba930
   languageName: node
   linkType: hard
+
+"@the-convocation/venat-core@workspace:^, @the-convocation/venat-core@workspace:core":
+  version: 0.0.0-use.local
+  resolution: "@the-convocation/venat-core@workspace:core"
+  dependencies:
+    "@commitlint/cli": ^16.2.4
+    "@commitlint/config-conventional": ^16.2.4
+    "@discord-nestjs/common": ^3.2.0
+    "@discord-nestjs/core": ^3.2.0
+    "@nestjs/cli": ^8.0.0
+    "@nestjs/common": ^8.0.0
+    "@nestjs/config": ^2.0.0
+    "@nestjs/core": ^8.0.0
+    "@nestjs/event-emitter": ^1.1.1
+    "@nestjs/schematics": ^8.0.0
+    "@nestjs/testing": ^8.0.0
+    "@nestjs/typeorm": ^9.0.0-next.2
+    "@types/express": ^4.17.13
+    "@types/jest": 27.5.0
+    "@types/node": ^16.0.0
+    "@types/supertest": ^2.0.11
+    "@typescript-eslint/eslint-plugin": ^5.0.0
+    "@typescript-eslint/parser": ^5.0.0
+    commitizen: ^4.2.4
+    cz-conventional-changelog: ^3.3.0
+    discord.js: ^13.6.0
+    eslint: ^8.0.1
+    eslint-config-prettier: ^8.3.0
+    eslint-plugin-prettier: ^4.0.0
+    husky: ">=6"
+    jest: 28.0.3
+    lint-staged: ">=10"
+    pg: ^8.7.3
+    prettier: ^2.3.2
+    reflect-metadata: ^0.1.13
+    resolve-package-path: ^4.0.3
+    rimraf: ^3.0.2
+    rxjs: ^7.2.0
+    source-map-support: ^0.5.20
+    supertest: ^6.1.3
+    ts-jest: 28.0.1
+    ts-loader: ^9.2.3
+    ts-node: ^10.0.0
+    tsconfig-paths: 4.0.0
+    typeorm: ^0.3.6
+    typescript: ^4.3.5
+  languageName: unknown
+  linkType: soft
+
+"@the-convocation/venat-module-example@workspace:modules/venat-module-example":
+  version: 0.0.0-use.local
+  resolution: "@the-convocation/venat-module-example@workspace:modules/venat-module-example"
+  dependencies:
+    "@nestjs/config": ^2.0.0
+    "@the-convocation/venat-core": "workspace:^"
+  languageName: unknown
+  linkType: soft
 
 "@tootallnate/once@npm:2":
   version: 2.0.0
@@ -3633,6 +3703,13 @@ __metadata:
   version: 2.0.3
   resolution: "esutils@npm:2.0.3"
   checksum: 22b5b08f74737379a840b8ed2036a5fb35826c709ab000683b092d9054e5c2a82c27818f12604bfc2a9a76b90b6834ef081edbc1c7ae30d1627012e067c6ec87
+  languageName: node
+  linkType: hard
+
+"eventemitter2@npm:6.4.5":
+  version: 6.4.5
+  resolution: "eventemitter2@npm:6.4.5"
+  checksum: 84504f9cf0cc30205cdd46783fe9df3733435e5097f13070b678023110b5ef07847651808ae280cd94c42cd5976880211c7a40321a8ff8fa56f7c5f9c5c11960
   languageName: node
   linkType: hard
 
@@ -6331,6 +6408,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"path-root-regex@npm:^0.1.0":
+  version: 0.1.2
+  resolution: "path-root-regex@npm:0.1.2"
+  checksum: dcd75d1f8e93faabe35a58e875b0f636839b3658ff2ad8c289463c40bc1a844debe0dab73c3398ef9dc8f6ec6c319720aff390cf4633763ddcf3cf4b1bbf7e8b
+  languageName: node
+  linkType: hard
+
+"path-root@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "path-root@npm:0.1.1"
+  dependencies:
+    path-root-regex: ^0.1.0
+  checksum: ff88aebfc1c59ace510cc06703d67692a11530989920427625e52b66a303ca9b3d4059b0b7d0b2a73248d1ad29bcb342b8b786ec00592f3101d38a45fd3b2e08
+  languageName: node
+  linkType: hard
+
 "path-to-regexp@npm:3.2.0":
   version: 3.2.0
   resolution: "path-to-regexp@npm:3.2.0"
@@ -6774,6 +6867,15 @@ __metadata:
   dependencies:
     global-dirs: ^0.1.1
   checksum: c4e11d33e84bde7516b824503ffbe4b6cce863d5ce485680fd3db997b7c64da1df98321b1fd0703b58be8bc9bc83bc96bd83043f96194386b45eb47229efb6b6
+  languageName: node
+  linkType: hard
+
+"resolve-package-path@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "resolve-package-path@npm:4.0.3"
+  dependencies:
+    path-root: ^0.1.1
+  checksum: ac68180c66036c8d8b75a747592f7aeb5fd1efbbec10256b535f53e8bbc95e242145338d7d309cd665f509435662b530ece0afbc3a10a13ed2d4ce9d24905a20
   languageName: node
   linkType: hard
 
@@ -8095,45 +8197,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "venat@workspace:."
   dependencies:
-    "@commitlint/cli": ^16.2.4
-    "@commitlint/config-conventional": ^16.2.4
-    "@discord-nestjs/common": ^3.2.0
-    "@discord-nestjs/core": ^3.2.0
-    "@nestjs/cli": ^8.0.0
-    "@nestjs/common": ^8.0.0
-    "@nestjs/config": ^2.0.0
-    "@nestjs/core": ^8.0.0
-    "@nestjs/schematics": ^8.0.0
-    "@nestjs/testing": ^8.0.0
-    "@nestjs/typeorm": ^9.0.0-next.2
-    "@types/express": ^4.17.13
-    "@types/jest": 27.5.0
-    "@types/node": ^16.0.0
-    "@types/supertest": ^2.0.11
-    "@typescript-eslint/eslint-plugin": ^5.0.0
-    "@typescript-eslint/parser": ^5.0.0
-    commitizen: ^4.2.4
-    cz-conventional-changelog: ^3.3.0
-    discord.js: ^13.6.0
-    eslint: ^8.0.1
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-prettier: ^4.0.0
-    husky: ">=6"
-    jest: 28.0.3
-    lint-staged: ">=10"
-    pg: ^8.7.3
-    prettier: ^2.3.2
-    reflect-metadata: ^0.1.13
     rimraf: ^3.0.2
-    rxjs: ^7.2.0
-    source-map-support: ^0.5.20
-    supertest: ^6.1.3
-    ts-jest: 28.0.1
-    ts-loader: ^9.2.3
-    ts-node: ^10.0.0
-    tsconfig-paths: 4.0.0
-    typeorm: ^0.3.6
-    typescript: ^4.3.5
   languageName: unknown
   linkType: soft
 

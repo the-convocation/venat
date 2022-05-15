@@ -1,8 +1,8 @@
 # env
-.env
+**/.env
 
 # compiled output
-/dist
+dist/
 /node_modules
 .eslintcache
 
