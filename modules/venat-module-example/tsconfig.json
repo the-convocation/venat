@@ -7,12 +7,12 @@
     "outDir": "./dist",
     "paths": {
       "@the-convocation/venat-core": [
-        "../../core/dist/src",
-        "../../core/src"
+        "../../core/src",
+        "../../core/dist/src"
       ],
       "@the-convocation/venat-core/*": [
-        "../../core/dist/src/*",
-        "../../core/src/*"
+        "../../core/src/*",
+        "../../core/dist/src/*"
       ]
     }
   },
