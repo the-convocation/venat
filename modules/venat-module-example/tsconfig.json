@@ -4,9 +4,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "sourceRoot": "src",
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
-  "references": [
-    {"path": "../../core"}
-  ]
+  "references": [{ "path": "../../core" }]
 }
