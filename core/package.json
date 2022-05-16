@@ -2,7 +2,7 @@
   "name": "@the-convocation/venat-core",
   "version": "0.1.2",
   "description": "",
-  "author": "The Convocation",
+  "author": "The Convocation contributors",
   "license": "AGPL-3.0-only",
   "main": "dist/src/module.js",
   "scripts": {
