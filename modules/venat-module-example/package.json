@@ -1,6 +1,6 @@
 {
   "name": "@the-convocation/venat-module-example",
-  "version": "0.0.0-semantic-release",
+  "version": "0.1.0",
   "packageManager": "yarn@3.2.1",
   "main": "dist/src/module.js",
   "scripts": {
