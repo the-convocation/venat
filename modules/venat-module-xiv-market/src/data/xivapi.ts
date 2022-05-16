@@ -13,13 +13,23 @@ export interface XIVAPISearchResponse {
   Results: XIVAPIItem[];
 }
 
+export enum XIVAPILanguage {
+  EN = 'en',
+  JA = 'ja',
+  DE = 'de',
+  FR = 'fr',
+}
+
 export async function getItemIdByName(
   name: string,
+  lang: XIVAPILanguage,
 ): Promise<LookupResult<XIVAPIItem>> {
   let res: AxiosResponse<XIVAPISearchResponse, any>;
   try {
     res = await axios.get<XIVAPISearchResponse>(
-      `https://xivapi.com/search?string=${name}&indexes=Item&columns=ID,Name,ItemSearchCategory.ID`,
+      `https://xivapi.com/search?string=${encodeURIComponent(
+        name,
+      )}&language=${lang}&indexes=Item&columns=ID,Name,ItemSearchCategory.ID`,
     );
   } catch (err) {
     if (!(err instanceof Error)) {

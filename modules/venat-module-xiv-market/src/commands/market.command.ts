@@ -48,9 +48,13 @@ export class MarketCommand implements DiscordTransformedCommand<MarketDto> {
     const getMarketInfoPartial = getMarketInfoByName(
       getItemIdByName,
       getMarketInfo,
-      this.logger.error,
+      this.logger.error.bind(this.logger),
     );
-    const marketInfo = await getMarketInfoPartial(dto.item, dto.server);
+    const marketInfo = await getMarketInfoPartial(
+      dto.item,
+      dto.server,
+      dto.lang,
+    );
     if (typeof marketInfo === 'string') {
       return { content: marketInfo };
     }
