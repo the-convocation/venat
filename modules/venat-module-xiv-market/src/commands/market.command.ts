@@ -57,10 +57,14 @@ export class MarketCommand implements DiscordTransformedCommand<MarketDto> {
 
     const { lastUploadTime, listings, worldName, dcName, itemName } =
       marketInfo;
+
+    const startIdx = 0;
+    const endIdx = 10;
+
     const listingsEmbed = new MessageEmbed()
       .setTitle(`Cheapest listings for ${itemName} on ${dcName ?? worldName}`)
       .setDescription(
-        '```' + buildTextTable(listings, worldName, 0, 10) + '```',
+        '```' + buildTextTable(listings, worldName, startIdx, endIdx) + '```',
       )
       .setColor('#a58947')
       .setFooter({
