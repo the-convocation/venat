@@ -54,6 +54,10 @@ export function getMarketInfoByName(
     }
 
     const item = itemLookup.value;
+    if (item.ItemSearchCategory.ID == null || item.ItemSearchCategory.ID == 0) {
+      return 'The requested item is not marketable.';
+    }
+
     const marketLookup = await getMarketInfo(item.ID, server);
     if (!marketLookup.success) {
       logError(marketLookup.err.message, marketLookup.err.stack);

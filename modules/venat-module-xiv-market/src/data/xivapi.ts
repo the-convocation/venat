@@ -4,6 +4,9 @@ import { LookupResult } from '@the-convocation/venat-core';
 export interface XIVAPIItem {
   ID: number;
   Name: string;
+  ItemSearchCategory: {
+    ID: number | null;
+  };
 }
 
 export interface XIVAPISearchResponse {
@@ -16,7 +19,7 @@ export async function getItemIdByName(
   let res: AxiosResponse<XIVAPISearchResponse, any>;
   try {
     res = await axios.get<XIVAPISearchResponse>(
-      `https://xivapi.com/search?string=${name}&filters=ItemSearchCategory.ID>8&columns=ID,Name`,
+      `https://xivapi.com/search?string=${name}&indexes=Item&columns=ID,Name,ItemSearchCategory.ID`,
     );
   } catch (err) {
     if (!(err instanceof Error)) {
