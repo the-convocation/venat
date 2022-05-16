@@ -15,7 +15,7 @@ export interface UniversalisMarketInfo {
   dcName?: string;
 }
 
-export async function getMarketListings(
+export async function getMarketInfo(
   itemId: number,
   server: string,
 ): Promise<LookupResult<UniversalisMarketInfo>> {
