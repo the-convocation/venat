@@ -6,18 +6,18 @@ export class User {
    * The Discord user ID/snowflake.
    */
   @PrimaryColumn()
-  id: number;
+  id!: number;
 
   /**
    * Is this Discord user an administrator of this bot instance?
    */
   // todo: replace this with roles in the future?
   @Column()
-  isAdmin: boolean;
+  isAdmin!: boolean;
 
   /**
    * Is this Discord user banned from using the bot?
    */
   @Column()
-  isBanned: boolean;
+  isBanned!: boolean;
 }

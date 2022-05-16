@@ -25,7 +25,10 @@ export async function getMarketInfo(
       `https://universalis.app/api/${server}/${itemId}`,
     );
   } catch (err) {
-    return { value: null, success: false, err };
+    if (!(err instanceof Error)) {
+      throw err;
+    }
+    return { success: false, err };
   }
 
   return { value: res.data, success: true };

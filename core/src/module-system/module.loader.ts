@@ -21,6 +21,10 @@ export class ModuleLoader {
       __dirname,
     );
 
+    if (checkPath == null) {
+      throw new Error(`Failed to resolve own package path.`);
+    }
+
     let modulesPath;
 
     do {
@@ -41,12 +45,12 @@ export class ModuleLoader {
 
   private static async resolveModules(
     rootPath: string,
-    prefix: string = null,
+    prefix?: string,
   ): Promise<DynamicModule[]> {
     const nodeModules = await fs.readdir(rootPath);
-    const resolvedModules = [];
+    const resolvedModules: DynamicModule[] = [];
     for (const nodeModule of nodeModules) {
-      if (nodeModule.startsWith('@') && !prefix) {
+      if (nodeModule.startsWith('@') && prefix == null) {
         resolvedModules.push(
           ...(await this.resolveModules(
             path.join(rootPath, nodeModule),
@@ -60,30 +64,35 @@ export class ModuleLoader {
       if (nodeModule.startsWith('venat-module-')) {
         try {
           const modulePath = (prefix ?? '') + nodeModule;
-          let module = await import(modulePath);
-          let metadata: VenatModuleMetadata;
-          for (const exp of Object.values(module)) {
-            if (Reflect.hasMetadata(METADATA_KEY, exp)) {
-              module = exp;
-              metadata = Reflect.getMetadata(METADATA_KEY, exp);
-              break;
-            }
-          }
+          const module: { [key: string]: object } = await import(modulePath);
 
-          if (!metadata) {
+          const nestModule = Object.values(module).find(
+            (item): item is DynamicModule =>
+              Reflect.hasMetadata(METADATA_KEY, item),
+          );
+
+          if (nestModule == null) {
             throw new Error(
               `Module ${module} does not have @VenatModule decorator`,
             );
           }
 
+          const metadata: VenatModuleMetadata = Reflect.getMetadata(
+            METADATA_KEY,
+            nestModule,
+          );
+
           ModuleLoader.logger.log(
             `Found module: ${metadata.name} (${modulePath})`,
           );
-          resolvedModules.push(module);
+          resolvedModules.push(nestModule);
           ModuleLoader.loadedModuleInfo.push(metadata);
-        } catch (e) {
+        } catch (error) {
+          if (!(error instanceof Error)) {
+            throw error;
+          }
           ModuleLoader.logger.error(
-            `Failed to load module ${nodeModule}: ${e.message}`,
+            `Failed to load module ${nodeModule}: ${error.message}`,
           );
         }
       }
