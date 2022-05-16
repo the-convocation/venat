@@ -5,6 +5,10 @@
 # The above will handle all files NOT found below
 #
 
+# Code
+*.js       text eol=lf
+*.ts       text eol=lf
+
 # Documents
 *.bibtex   text diff=bibtex
 *.doc      diff=astextplain
