@@ -64,7 +64,7 @@ export class ModuleLoader {
       if (nodeModule.startsWith('venat-module-')) {
         try {
           const modulePath = (prefix ?? '') + nodeModule;
-          const module: { [key: string]: any } = await import(modulePath);
+          const module: { [key: string]: object } = await import(modulePath);
 
           const nestModule = Object.values(module).find(
             (item): item is DynamicModule =>

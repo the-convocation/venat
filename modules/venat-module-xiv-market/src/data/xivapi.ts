@@ -33,7 +33,7 @@ export async function getItemIdByName(
   }
 
   return {
-    success: false,
     err: new Error(`The item ${name} could not be found.`),
+    success: false,
   };
 }
