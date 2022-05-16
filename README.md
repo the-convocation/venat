@@ -1,7 +1,9 @@
 # Venat
 ![Codacy grade](https://img.shields.io/codacy/grade/a68b8c55a3f6483080ca8b28fd5ec9f0)
+![npm version](https://badge.fury.io/js/@the-convocation%2Fvenat-core.svg)
+![License](https://img.shields.io/github/license/the-convocation/venat)
 
-Provide open source ffxiv community discord bot that's incredibly easy to self-host.
+Venat is an open-source Discord bot for the Final Fantasy XIV community that is incredibly easy to self-host.
 
 ## Description
 
@@ -19,13 +21,14 @@ Venat is in very early development and is not yet intended for general use. It's
 
 ## Development
 ### Pre-requisites
-* Node >=16.6.0 && < 17 
+* Node >=16.6.0
+  * Newer Node versions may be supported, but Venat is currently developed and tested only with Node 16.x.
 * Yarn
 * Docker
 * nvm (optional)
 
 ### Setup Bot
-1. Log into discord portal: https://discord.com/developers/applications.
+1. Log into Discord portal: https://discord.com/developers/applications.
 2. Create new application.
 3. Select OAuth2 on left side.
 4. Select Reset Secret.
