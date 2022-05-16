@@ -15,7 +15,7 @@
     "start": "cd core && yarn start",
     "commit": "cz",
     "prepare": "husky install",
-    "ci": "yarn build && lerna version --yes && lerna publish from-package --yes"
+    "ci": "yarn build && lerna version --yes && lerna publish from-package --yes --no-verify-access"
   },
   "dependencies": {
     "@discord-nestjs/common": "^3.2.0",
