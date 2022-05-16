@@ -46,7 +46,7 @@ export function getMarketInfoByName(
     server: string,
   ) => Promise<LookupResult<UniversalisMarketInfo>>,
   logError: (message?: string, stack?: string) => void,
-) {
+): (itemName: string, server: string) => Promise<MarketInfo | string> {
   return async (
     itemName: string,
     server: string,
