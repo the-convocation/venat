@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/the-convocation/venat/compare/v0.1.2...v0.1.3) (2022-05-16)
+
+### Bug Fixes
+
+* **ci:** *sneezes in github's general direction* ([8e4ce65](https://github.com/the-convocation/venat/commit/8e4ce65174823b267ce529d836175c4dd8e27ccd))
+
 ## [0.1.2](https://github.com/the-convocation/venat/compare/v0.1.1...v0.1.2) (2022-05-16)
 
 **Note:** Version bump only for package @the-convocation/venat-core
