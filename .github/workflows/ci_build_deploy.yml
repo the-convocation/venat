@@ -27,6 +27,8 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ghcr.io/the-convocation/venat
+          flavor: |
+            latest=false
           tags: |
             type=semver,pattern={{version}}-core
             type=raw,value=latest-core
@@ -38,7 +40,7 @@ jobs:
           file: Dockerfile.core
           platforms: linux/amd64
           push: true
-          tags: ${{ steps.meta.output.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
   full-image:
@@ -62,6 +64,8 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ghcr.io/the-convocation/venat
+          flavor: |
+            latest=false
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{version}}-full
@@ -75,7 +79,7 @@ jobs:
           file: Dockerfile.full
           platforms: linux/amd64
           push: true
-          tags: ${{ steps.meta.output.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
