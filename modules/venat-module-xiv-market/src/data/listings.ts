@@ -35,7 +35,8 @@ type LogError = (message?: string, stack?: string) => void;
  * @param getItemInfoByName An async function that returns an item's information by its name.
  * @param getMarketInfo An async function that returns an item's market info by its item ID and a game server.
  * @param logError An error-logging function.
- * @returns An async function that returns an item's market info by its name and a game server.
+ * @returns An async function that returns an item's market info by its name and a game server. If something goes
+ * wrong, an error message is returned describing the problem.
  */
 export function getMarketInfoByName(
   getItemInfoByName: GetItemInfoByName,
