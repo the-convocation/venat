@@ -9,5 +9,5 @@ export class PlayDto {
       'Name or URL of song/playlist. Could be from (Youtube, Spotify, SoundCloud)',
     required: true,
   })
-  song: string;
+  song!: string;
 }
