@@ -1,0 +1,17 @@
+{
+  "version": "0.0.0",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "message": "chore(release): %v",
+      "noPrivate": true,
+      "gitDryRun": false
+    },
+    "publish": {
+      "conventionalCommits": true
+    }
+  }
+}
