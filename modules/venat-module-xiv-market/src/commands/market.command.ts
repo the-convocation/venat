@@ -10,7 +10,24 @@ import { InteractionReplyOptions, MessageEmbed } from 'discord.js';
 import { getMarketInfo } from '../data/universalis';
 import { getItemIdByName } from '../data/xivapi';
 import { MarketDto } from '../dto/market.dto';
-import { buildTextTable, getMarketInfoByName } from '../data/listings';
+import { getMarketInfoByName, MarketListing } from '../data/listings';
+import { table } from 'table';
+
+function buildTextTable(listings: MarketListing[], worldName?: string): string {
+  return table([
+    ['HQ', 'Unit Price', 'Quantity', 'Total', 'World'],
+    ...listings
+      .sort((a, b) => a.pricePerUnit - b.pricePerUnit)
+      .slice(0, 10)
+      .map((l) => [
+        l.hq ? 'Yes' : 'No',
+        l.pricePerUnit.toLocaleString('en'),
+        l.quantity.toLocaleString('en'),
+        l.total.toLocaleString('en'),
+        worldName ?? l.worldName,
+      ]),
+  ]);
+}
 
 @Command({
   description: 'Look up prices for an item on the market board.',

@@ -1,5 +1,4 @@
 import { LookupResult } from '@the-convocation/venat-core';
-import { table } from 'table';
 import { UniversalisMarketInfo } from './universalis';
 import { XIVAPIItem } from './xivapi';
 
@@ -18,25 +17,6 @@ export interface MarketInfo {
   dcName?: string;
   lastUploadTime: number;
   listings: MarketListing[];
-}
-
-export function buildTextTable(
-  listings: MarketListing[],
-  worldName?: string,
-): string {
-  return table([
-    ['HQ', 'Unit Price', 'Quantity', 'Total', 'World'],
-    ...listings
-      .sort((a, b) => a.pricePerUnit - b.pricePerUnit)
-      .slice(0, 10)
-      .map((l) => [
-        l.hq ? 'Yes' : 'No',
-        l.pricePerUnit.toLocaleString('en'),
-        l.quantity.toLocaleString('en'),
-        l.total.toLocaleString('en'),
-        worldName ?? l.worldName,
-      ]),
-  ]);
 }
 
 export function getMarketInfoByName(
