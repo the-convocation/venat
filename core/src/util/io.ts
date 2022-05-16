@@ -1,5 +1,3 @@
-export interface LookupResult<TValue> {
-  value: TValue;
-  success: boolean;
-  err?: Error;
-}
+export type LookupResult<TValue> =
+  | { success: true; value: TValue }
+  | { success: false; err: Error };

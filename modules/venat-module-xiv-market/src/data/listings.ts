@@ -32,7 +32,7 @@ export function getMarketInfoByName(
     server: string,
   ): Promise<MarketInfo | string> => {
     const itemLookup = await getItemIdByName(itemName);
-    if (itemLookup.err != null) {
+    if (!itemLookup.success) {
       logError(itemLookup.err.message, itemLookup.err.stack);
       return 'Failed to access XIVAPI; please try again later.';
     }
@@ -43,7 +43,7 @@ export function getMarketInfoByName(
 
     const item = itemLookup.value;
     const marketLookup = await getMarketInfo(item.ID, server);
-    if (marketLookup.err != null) {
+    if (!marketLookup.success) {
       logError(marketLookup.err.message, marketLookup.err.stack);
       return 'The item could not be found; please check your spelling of the server and try again.';
     }

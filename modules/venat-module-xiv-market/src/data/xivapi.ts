@@ -19,7 +19,10 @@ export async function getItemIdByName(
       `https://xivapi.com/search?string=${name}&filters=ItemSearchCategory.ID>8&columns=ID,Name`,
     );
   } catch (err) {
-    return { value: null, success: false, err };
+    if (!(err instanceof Error)) {
+      throw err;
+    }
+    return { success: false, err };
   }
 
   const nameLower = name.toLowerCase();
@@ -29,5 +32,8 @@ export async function getItemIdByName(
     }
   }
 
-  return { value: null, success: false };
+  return {
+    success: false,
+    err: new Error(`The item ${name} could not be found.`),
+  };
 }
