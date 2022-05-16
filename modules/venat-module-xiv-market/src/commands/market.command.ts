@@ -10,15 +10,20 @@ import { InteractionReplyOptions, MessageEmbed } from 'discord.js';
 import { getMarketInfo } from '../data/universalis';
 import { getItemIdByName } from '../data/xivapi';
 import { MarketDto } from '../dto/market.dto';
-import { getMarketInfoByName, MarketListing } from '../data/listings';
+import { getMarketInfoByName, ItemMarketListing } from '../data/listings';
 import { table } from 'table';
 
-function buildTextTable(listings: MarketListing[], worldName?: string): string {
+function buildTextTable(
+  listings: ItemMarketListing[],
+  worldName: string | null | undefined,
+  startIdx: number,
+  endIdx: number,
+): string {
   return table([
     ['HQ', 'Unit Price', 'Quantity', 'Total', 'World'],
     ...listings
       .sort((a, b) => a.pricePerUnit - b.pricePerUnit)
-      .slice(0, 10)
+      .slice(startIdx, endIdx)
       .map((l) => [
         l.hq ? 'Yes' : 'No',
         l.pricePerUnit.toLocaleString('en'),
@@ -54,7 +59,9 @@ export class MarketCommand implements DiscordTransformedCommand<MarketDto> {
       marketInfo;
     const listingsEmbed = new MessageEmbed()
       .setTitle(`Cheapest listings for ${itemName} on ${dcName ?? worldName}`)
-      .setDescription('```' + buildTextTable(listings, worldName) + '```')
+      .setDescription(
+        '```' + buildTextTable(listings, worldName, 0, 10) + '```',
+      )
       .setColor('#a58947')
       .setFooter({
         text: 'Last updated:',
