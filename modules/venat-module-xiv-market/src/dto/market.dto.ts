@@ -9,7 +9,7 @@ export class MarketDto {
     name: 'item',
     required: true,
   })
-  public item: string;
+  public item!: string;
 
   @Transform(cleanText)
   @Param({
@@ -17,5 +17,5 @@ export class MarketDto {
     name: 'server',
     required: true,
   })
-  public server: string;
+  public server!: string;
 }
