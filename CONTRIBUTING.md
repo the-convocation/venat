@@ -11,6 +11,9 @@ We want to make contributing to this project as easy and transparent as possible
 
 Contributions to this project are [released](https://docs.github.com/github/site-policy/github-terms-of-service#6-contributions-under-repository-license) to the public under the [AGPL-3.0 license](LICENSE).
 
+We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) guidelines for writing commits.
+You can use `cz` or `yarn commit` to create a commit with the helper tool, or write your commit message manually.
+
 ## Making a Code Change
 1. Fork the repo and create your branch from `main`.
 2. If you've added code that should be tested, add tests.

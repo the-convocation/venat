@@ -1,4 +1,4 @@
-name: Build & Deploy Multiarch Images
+name: Build & Push Multiarch Images
 
 on:
   push:
