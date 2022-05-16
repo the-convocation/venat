@@ -12,6 +12,6 @@ export class UserIsBotAdminGuard implements DiscordGuard {
     [message, user]: [Message, User],
   ): Promise<boolean> {
     const userEntity = await this.usersService.find(user);
-    return userEntity && userEntity.isAdmin;
+    return userEntity?.isAdmin ?? false;
   }
 }

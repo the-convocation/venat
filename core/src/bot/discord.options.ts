@@ -11,8 +11,13 @@ export class DiscordOptions implements DiscordOptionsFactory {
   constructor(private config: ConfigService) {}
 
   public createDiscordOptions(): DiscordModuleOption {
+    const token = this.config.get('TOKEN');
+    if (token == null) {
+      throw new Error(`Missing TOKEN configuration key.`);
+    }
+
     return {
-      token: this.config.get('TOKEN'),
+      token,
       discordClientOptions: {
         intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
       },
