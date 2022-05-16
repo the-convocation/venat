@@ -1,0 +1,82 @@
+name: Build & Deploy linux/amd64 images
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  core-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: venatbot
+          password: ${{ secrets.GH_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ghcr.io/the-convocation/venat
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.core
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/the-convocation/venat:core, ghcr.io/the-convocation/venat:${{ steps.meta.output.tags }}-core
+          labels: ${{ steps.meta.outputs.labels }}
+
+  full-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: venatbot
+          password: ${{ secrets.GH_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ghcr.io/the-convocation/venat
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.full
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/the-convocation/venat:latest, ghcr.io/the-convocation/venat:full, ghcr.io/the-convocation/venat:${{ steps.meta.output.tags }}, ghcr.io/the-convocation/venat:${{ steps.meta.output.tags }}-full
+          labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [ core-image, full-image ]
+    steps:
+      - name: Deploy to production server
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.DEPLOY_SSH_HOST }}
+          port: ${{ secrets.DEPLOY_SSH_PORT }}
+          username: ${{ secrets.DEPLOY_SSH_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: sudo /home/deploy/deploy-venat.sh main
