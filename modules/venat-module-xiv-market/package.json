@@ -9,5 +9,8 @@
   },
   "dependencies": {
     "@the-convocation/venat-core": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
