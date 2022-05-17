@@ -39,5 +39,9 @@
   "packageManager": "yarn@3.2.1",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@sentry/core": "^6.19.7",
+    "@sentry/node": "^6.19.7"
   }
 }
