@@ -97,7 +97,11 @@ export function getMarketInfoByName(
     }
 
     const item = itemLookup.value;
-    if (item.ItemSearchCategory.ID == null || item.ItemSearchCategory.ID == 0) {
+    const invalidItemSearchCategory = 0;
+    if (
+      item.ItemSearchCategory.ID == null ||
+      item.ItemSearchCategory.ID == invalidItemSearchCategory
+    ) {
       return 'The requested item is not marketable.';
     }
 
