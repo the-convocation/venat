@@ -17,7 +17,13 @@ export class DatabaseOptions implements TypeOrmOptionsFactory {
       database: this.config.get('DATABASE_NAME', 'postgres'),
       synchronize: this.config.get('DATABASE_SYNCHRONIZE', false) === 'true',
       logging: this.config.get('DATABASE_LOGGING', false) === 'true',
-      migrations: [path.join(__dirname, 'migrations/**/*.{ts,js}')],
+      migrations: [
+        path.join(__dirname, 'migrations/**/*.{ts,js}'),
+        path.join(
+          __dirname,
+          '../../node_modules/**/venat-module-*/dist/database/migrations/**/*.{ts,js}',
+        ),
+      ],
       migrationsRun: true,
       autoLoadEntities: true,
     };

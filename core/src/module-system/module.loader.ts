@@ -1,9 +1,14 @@
-import { DynamicModule, Logger, Module } from '@nestjs/common';
+import { DynamicModule, Logger, Module, Type } from '@nestjs/common';
 import * as resolvePackagePath from 'resolve-package-path';
 import * as path from 'path';
 import * as fs from 'fs/promises';
 import { VenatModuleMetadata } from './venat-module.metadata';
 import { METADATA_KEY } from './venat-module.decorator';
+import { PackageManifest } from './package-manifest.type';
+import {
+  MODULE_PACKAGE_NAME,
+  MODULE_PACKAGE_VERSION,
+} from './module.constants';
 
 @Module({})
 export class ModuleLoader {
@@ -65,9 +70,11 @@ export class ModuleLoader {
         try {
           const modulePath = (prefix ?? '') + nodeModule;
           const module: { [key: string]: object } = await import(modulePath);
+          const { name: moduleName, version: moduleVersion }: PackageManifest =
+            await import(modulePath + '/package.json');
 
           const nestModule = Object.values(module).find(
-            (item): item is DynamicModule =>
+            (item): item is Type<unknown> =>
               Reflect.hasMetadata(METADATA_KEY, item),
           );
 
@@ -85,7 +92,23 @@ export class ModuleLoader {
           ModuleLoader.logger.log(
             `Found module: ${metadata.name} (${modulePath})`,
           );
-          resolvedModules.push(nestModule);
+
+          const providers = [
+            {
+              provide: MODULE_PACKAGE_NAME,
+              useValue: moduleName,
+            },
+            {
+              provide: MODULE_PACKAGE_VERSION,
+              useValue: moduleVersion,
+            },
+          ];
+          const dynamicModule: DynamicModule = {
+            providers: providers,
+            exports: providers,
+            module: nestModule,
+          };
+          resolvedModules.push(dynamicModule);
           ModuleLoader.loadedModuleInfo.push(metadata);
         } catch (error) {
           if (!(error instanceof Error)) {

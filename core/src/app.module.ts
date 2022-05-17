@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule as NestConfigModule } from '@nestjs/config';
 
 import { BotModule } from './bot/bot.module';
 import { DatabaseModule } from './database/database.module';
@@ -9,7 +9,7 @@ import { SentryModule } from './sentry/sentry.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    NestConfigModule.forRoot(),
     SentryModule,
     DatabaseModule,
     UsersModule,
