@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/the-convocation/venat/compare/v0.1.7...v0.2.0) (2022-05-17)
+
+### Features
+
+* add lang parameter on market command ([#59](https://github.com/the-convocation/venat/issues/59)) ([e4518af](https://github.com/the-convocation/venat/commit/e4518afc1a11a4e081dcfed47aecbc8d060c0d03))
+
 ## [0.1.7](https://github.com/the-convocation/venat/compare/v0.1.6...v0.1.7) (2022-05-16)
 
 **Note:** Version bump only for package @the-convocation/venat-module-xiv-market
