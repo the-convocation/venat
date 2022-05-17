@@ -1,8 +1,8 @@
 import { LookupResult } from '@the-convocation/venat-core';
 import { UniversalisMarketInfo } from './universalis';
-import { XIVAPIItem } from './xivapi';
+import { XIVAPIItem, XIVAPILanguage } from './xivapi';
 
-export interface MarketListing {
+export interface ItemMarketListing {
   pricePerUnit: number;
   quantity: number;
   total: number;
@@ -10,46 +10,105 @@ export interface MarketListing {
   worldName?: string;
 }
 
-export interface MarketInfo {
+export interface ItemMarketInfo {
   itemId: number;
   itemName: string;
   worldName?: string;
   dcName?: string;
   lastUploadTime: number;
-  listings: MarketListing[];
+  listings: ItemMarketListing[];
 }
 
+export type GetItemInfoByName = (
+  itemName: string,
+  lang: XIVAPILanguage,
+) => Promise<LookupResult<XIVAPIItem>>;
+
+export type GetItemMarketInfo = (
+  itemId: number,
+  server: string,
+) => Promise<LookupResult<UniversalisMarketInfo>>;
+
+export type LogError = (message?: string, stack?: string) => void;
+
+export enum Language {
+  English,
+  Japanese,
+  French,
+  German,
+}
+
+const xivapiLangMap = new Map<Language, XIVAPILanguage>([
+  [Language.English, XIVAPILanguage.EN],
+  [Language.Japanese, XIVAPILanguage.JA],
+  [Language.German, XIVAPILanguage.DE],
+  [Language.French, XIVAPILanguage.FR],
+]);
+
+function langToXivapi(lang: Language): XIVAPILanguage {
+  const xivapiLang = xivapiLangMap.get(lang);
+  if (xivapiLang == null) {
+    throw new Error(
+      `The language code "${lang}" could not be converted into a Language.`,
+    );
+  }
+
+  return xivapiLang;
+}
+
+/**
+ * Gets an item's market info using its name and a game server. Requires provider functions for I/O.
+ * @param getItemInfoByName An async function that returns an item's information by its name and language.
+ * @param getMarketInfo An async function that returns an item's market info by its item ID and a game server.
+ * @param logError An error-logging function.
+ * @returns An async function that returns an item's market info by its name, its language, and a game server.
+ * If something goes wrong, an error message is returned describing the problem.
+ */
 export function getMarketInfoByName(
-  getItemIdByName: (itemName: string) => Promise<LookupResult<XIVAPIItem>>,
-  getMarketInfo: (
-    itemId: number,
-    server: string,
-  ) => Promise<LookupResult<UniversalisMarketInfo>>,
-  logError: (message?: string, stack?: string) => void,
-): (itemName: string, server: string) => Promise<MarketInfo | string> {
+  getItemInfoByName: GetItemInfoByName,
+  getMarketInfo: GetItemMarketInfo,
+  logError: LogError,
+): (
+  itemName: string,
+  server: string,
+  lang: Language,
+) => Promise<ItemMarketInfo | string> {
   return async (
     itemName: string,
     server: string,
-  ): Promise<MarketInfo | string> => {
-    const itemLookup = await getItemIdByName(itemName);
-    if (!itemLookup.success) {
-      logError(itemLookup.err.message, itemLookup.err.stack);
-      return 'Failed to access XIVAPI; please try again later.';
+    lang: Language,
+  ): Promise<ItemMarketInfo | string> => {
+    let xivapiLang: XIVAPILanguage;
+    try {
+      xivapiLang = langToXivapi(lang);
+    } catch (err) {
+      if (!(err instanceof Error)) {
+        throw err;
+      }
+
+      logError(err.message, err.stack);
+      xivapiLang = XIVAPILanguage.EN;
     }
 
+    const itemLookup = await getItemInfoByName(itemName, xivapiLang);
     if (!itemLookup.success) {
-      return 'The item could not be found; please check your spelling and try again.';
+      logError(itemLookup.err.message, itemLookup.err.stack);
+      return 'The item could not be found; please check your item name spelling and try again.';
     }
 
     const item = itemLookup.value;
+    const invalidItemSearchCategory = 0;
+    if (
+      item.ItemSearchCategory.ID == null ||
+      item.ItemSearchCategory.ID == invalidItemSearchCategory
+    ) {
+      return 'The requested item is not marketable.';
+    }
+
     const marketLookup = await getMarketInfo(item.ID, server);
     if (!marketLookup.success) {
       logError(marketLookup.err.message, marketLookup.err.stack);
-      return 'The item could not be found; please check your spelling of the server and try again.';
-    }
-
-    if (!marketLookup.success) {
-      return 'The item could not be found; please check your spelling and try again.';
+      return 'The item could not be found on the market; please check your server spelling and try again.';
     }
 
     return {
