@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/the-convocation/venat/compare/v0.2.0...v0.3.0) (2022-05-17)
+
+### Features
+
+* **sentry:** add optional sentry support ([#69](https://github.com/the-convocation/venat/issues/69)) ([c288f4b](https://github.com/the-convocation/venat/commit/c288f4bd8e916835ff2efdf8ac9e9ea2717bb538)), closes [#63](https://github.com/the-convocation/venat/issues/63)
+
 # [0.2.0](https://github.com/the-convocation/venat/compare/v0.1.7...v0.2.0) (2022-05-17)
 
 ### Features
