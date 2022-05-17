@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
+import * as path from 'path';
 
 @Injectable()
 export class DatabaseOptions implements TypeOrmOptionsFactory {
@@ -16,7 +17,7 @@ export class DatabaseOptions implements TypeOrmOptionsFactory {
       database: this.config.get('DATABASE_NAME', 'postgres'),
       synchronize: this.config.get('DATABASE_SYNCHRONIZE', false) === 'true',
       logging: this.config.get('DATABASE_LOGGING', false) === 'true',
-      migrations: ['./dist/database/migrations/**/*.{ts,js}'],
+      migrations: [path.join(__dirname, 'migrations/**/*.{ts,js}')],
       migrationsRun: true,
       autoLoadEntities: true,
     };

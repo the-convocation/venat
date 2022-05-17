@@ -17,7 +17,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:create": "yarn build && npx typeorm migration:generate -p -d ./dist/src/database/cli-helper.datasource.js"
+    "migration:generate": "node ../build-scripts/migration-generate.js"
   },
   "jest": {
     "moduleFileExtensions": [
