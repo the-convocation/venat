@@ -65,6 +65,10 @@ Venat is in very early development and is not yet intended for general use. It's
 2. Run `yarn dev`.
 3. Verify bot is working by using the `/play` command.
 
+## Modules
+Venat is built with modules to allow server owners to select the features they want and help aid in development efforts.
+The modules should be named as follows: venat-module-_area_-_feature_ (e.g. venat-module-xiv-market).
+
 ## Help
 Discord server coming soon. For now, please <a href="https://github.com/the-convocation/venat/issues">open an issue</a>.
 
