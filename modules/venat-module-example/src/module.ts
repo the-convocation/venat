@@ -22,11 +22,6 @@ export class ExampleModule implements OnModuleInit {
   ) {}
 
   public onModuleInit(): void {
-    this.logger.log(
-      'ExampleModule loaded! - ' +
-        this.packageName +
-        ' - ' +
-        this.config.whoami(),
-    );
+    this.logger.log('ExampleModule loaded! - ' + this.packageName);
   }
 }

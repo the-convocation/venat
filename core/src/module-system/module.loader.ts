@@ -70,7 +70,7 @@ export class ModuleLoader {
         try {
           const modulePath = (prefix ?? '') + nodeModule;
           const module: { [key: string]: object } = await import(modulePath);
-          const { name: moduleName, version: moduleVersion }: PackageManifest =
+          const { name: moduleName, version: moduleVer }: PackageManifest =
             await import(modulePath + '/package.json');
 
           const nestModule = Object.values(module).find(
@@ -93,21 +93,27 @@ export class ModuleLoader {
             `Found module: ${metadata.name} (${modulePath})`,
           );
 
-          const providers = [
-            {
-              provide: MODULE_PACKAGE_NAME,
-              useValue: moduleName,
-            },
-            {
-              provide: MODULE_PACKAGE_VERSION,
-              useValue: moduleVersion,
-            },
-          ];
+          // define metadata with the module name and version
+          // this is used to hop from INQUIRER to the module
+          Reflect.defineMetadata(MODULE_PACKAGE_NAME, moduleName, nestModule);
+          Reflect.defineMetadata(MODULE_PACKAGE_VERSION, moduleVer, nestModule);
+
+          // define those as providers too, for ease of access within the module
           const dynamicModule: DynamicModule = {
-            providers: providers,
-            exports: providers,
+            providers: [
+              {
+                provide: MODULE_PACKAGE_NAME,
+                useValue: moduleName,
+              },
+              {
+                provide: MODULE_PACKAGE_VERSION,
+                useValue: moduleVer,
+              },
+            ],
             module: nestModule,
           };
+
+          // module is resolved and metadata added, move on
           resolvedModules.push(dynamicModule);
           ModuleLoader.loadedModuleInfo.push(metadata);
         } catch (error) {
