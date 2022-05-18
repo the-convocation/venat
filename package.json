@@ -11,7 +11,8 @@
   "scripts": {
     "clean": "yarn workspaces foreach -pt run clean",
     "build": "yarn workspaces foreach -pt run build",
-    "dev": "cd core && yarn dev",
+    "test": "yarn workspaces foreach -At run test",
+    "dev": "yarn build && cd core && yarn start",
     "start": "cd core && yarn start",
     "commit": "cz",
     "prepare": "husky install",

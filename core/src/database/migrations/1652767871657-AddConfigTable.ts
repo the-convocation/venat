@@ -12,7 +12,7 @@ export class AddConfigTable1652767871657 implements MigrationInterface {
         (
             "module"      character varying                  NOT NULL,
             "subjectType" "public"."config_subjecttype_enum" NOT NULL,
-            "subject"     bigint,
+            "subject"     bigint                             NULL,
             "data"        json                               NOT NULL,
             CONSTRAINT "PK_d50d2aaa485df164403875b9448" PRIMARY KEY ("module", "subjectType", "subject")
         )
