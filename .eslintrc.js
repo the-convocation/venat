@@ -17,6 +17,7 @@ module.exports = {
   ignorePatterns: [
     '.eslintrc.js',
     'core/src/database/migrations/**/*.{ts,js}',
+    'build-scripts/**',
     '**/test/**',
   ],
   rules: {

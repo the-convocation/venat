@@ -1,9 +1,14 @@
-import { DynamicModule, Logger, Module } from '@nestjs/common';
+import { DynamicModule, Logger, Module, Type } from '@nestjs/common';
 import * as resolvePackagePath from 'resolve-package-path';
 import * as path from 'path';
 import * as fs from 'fs/promises';
 import { VenatModuleMetadata } from './venat-module.metadata';
 import { METADATA_KEY } from './venat-module.decorator';
+import { PackageManifest } from './package-manifest.type';
+import {
+  MODULE_PACKAGE_NAME,
+  MODULE_PACKAGE_VERSION,
+} from './module.constants';
 
 @Module({})
 export class ModuleLoader {
@@ -65,9 +70,11 @@ export class ModuleLoader {
         try {
           const modulePath = (prefix ?? '') + nodeModule;
           const module: { [key: string]: object } = await import(modulePath);
+          const { name: moduleName, version: moduleVer }: PackageManifest =
+            await import(modulePath + '/package.json');
 
           const nestModule = Object.values(module).find(
-            (item): item is DynamicModule =>
+            (item): item is Type<unknown> =>
               Reflect.hasMetadata(METADATA_KEY, item),
           );
 
@@ -85,7 +92,29 @@ export class ModuleLoader {
           ModuleLoader.logger.log(
             `Found module: ${metadata.name} (${modulePath})`,
           );
-          resolvedModules.push(nestModule);
+
+          // define metadata with the module name and version
+          // this is used to hop from INQUIRER to the module
+          Reflect.defineMetadata(MODULE_PACKAGE_NAME, moduleName, nestModule);
+          Reflect.defineMetadata(MODULE_PACKAGE_VERSION, moduleVer, nestModule);
+
+          // define those as providers too, for ease of access within the module
+          const dynamicModule: DynamicModule = {
+            providers: [
+              {
+                provide: MODULE_PACKAGE_NAME,
+                useValue: moduleName,
+              },
+              {
+                provide: MODULE_PACKAGE_VERSION,
+                useValue: moduleVer,
+              },
+            ],
+            module: nestModule,
+          };
+
+          // module is resolved and metadata added, move on
+          resolvedModules.push(dynamicModule);
           ModuleLoader.loadedModuleInfo.push(metadata);
         } catch (error) {
           if (!(error instanceof Error)) {

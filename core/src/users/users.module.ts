@@ -9,6 +9,11 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [TypeOrmModule.forFeature([User]), ConfigModule],
   providers: [UsersService, UserIsBotAdminGuard, UserCanUseBotGuard],
-  exports: [UsersService, UserIsBotAdminGuard, UserCanUseBotGuard],
+  exports: [
+    TypeOrmModule,
+    UsersService,
+    UserIsBotAdminGuard,
+    UserCanUseBotGuard,
+  ],
 })
 export class UsersModule {}

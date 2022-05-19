@@ -5,7 +5,7 @@ export class User {
   /**
    * The Discord user ID/snowflake.
    */
-  @PrimaryColumn()
+  @PrimaryColumn({ type: 'bigint' })
   id!: number;
 
   /**

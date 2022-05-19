@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
+import * as path from 'path';
 
 // Used by the TypeORM CLI when generating migrations
 export default new DataSource({
@@ -10,6 +11,18 @@ export default new DataSource({
   password: process.env.DATABASE_PASS ?? '',
   database: process.env.DATABASE_NAME ?? 'postgres',
   logging: true,
-  entities: ['./dist/**/*.entity.{ts,js}'],
-  migrations: ['./dist/database/migrations/**/*.{ts,js}'],
+  entities: [
+    path.join(__dirname, '../**/*.entity.{ts,js}'),
+    path.join(
+      __dirname,
+      '../../modules/**/venat-module-*/dist/**/*.entity.{ts,js}',
+    ),
+  ],
+  migrations: [
+    path.join(__dirname, 'migrations/**/*.{ts,js}'),
+    path.join(
+      __dirname,
+      '../../modules/**/venat-module-*/dist/database/migrations/**/*.{ts,js}',
+    ),
+  ],
 });
