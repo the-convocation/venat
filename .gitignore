@@ -1,9 +1,10 @@
 # env
-.env
+**/.env
 
 # compiled output
-/dist
+dist/
 /node_modules
+.eslintcache
 
 # Logs
 logs
@@ -36,3 +37,12 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Yarn 3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

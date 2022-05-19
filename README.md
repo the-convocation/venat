@@ -1,73 +1,76 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Venat
+![Codacy grade](https://img.shields.io/codacy/grade/a68b8c55a3f6483080ca8b28fd5ec9f0)
+![npm version](https://badge.fury.io/js/@the-convocation%2Fvenat-core.svg)
+![License](https://img.shields.io/github/license/the-convocation/venat)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Venat is an open-source Discord bot for the Final Fantasy XIV community that is incredibly easy to self-host.
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+We aim to offer the following features:
+- Provide moderation and role management.
+- Provide integrations with popular ffxiv services and streaming sites.
+- Provide fun community features like music, games, and give-aways.
+- Provide admin dashboard for managing the bot.
 
-## Installation
+We are working towards building this in a modular way, so that you can pick and choose what features you need for 
+your server. This modular approach should also allow Venat to be extended to other game communities in the future.
 
-```bash
-$ npm install
-```
+## Warning
+Venat is in very early development and is not yet intended for general use. It's available now for developers and other contributors.
 
-## Running the app
+## Development
+### Pre-requisites
+* Node >=16.6.0
+  * Newer Node versions may be supported, but Venat is currently developed and tested only with Node 16.x.
+* Yarn
+* Docker
+* nvm (optional)
 
-```bash
-# development
-$ npm run start
+### Setup Bot
+1. Log into Discord portal: https://discord.com/developers/applications.
+2. Create new application.
+3. Select OAuth2 on left side.
+4. Select Reset Secret.
+5. Copy client secret and save for later.
+6. Select URL Generator on left side.
+7. Select the following scopes:
+   1. bot
+   2. applications.commands
+8. Select the following bot permissions:
+   1. Administrator
+9. Copy generated url for later.
+10. Select Bot on left side.
+11. Add Bot to application.
+12. Update the following settings:
+    1. Presence Intent: On 
+    2. Server Members Intent: On 
+    3. Message Content Intent: On
+13. Select the following bot permissions:
+    1. Administrator
+14. Open generated url in web browser to authorize.
 
-# watch mode
-$ npm run start:dev
+### Setup Workspace
+1. Fork repo https://github.com/the-convocation/venat.
+2. Clone fork to local workspace.
+3. Create copy of core/.env.example and rename to .env.
+4. Update the following env variables in .env:
+    1. Set TOKEN to the client secret from previous step.
+    2. Set GUILD_ID_WITH_COMMANDS to your discord server id.
+5. Open command line to root dir.
+6. Run `yarn install`.
 
-# production mode
-$ npm run start:prod
-```
+### Run Bot
+1. Run `docker run -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=venat -p 5432:5432 postgres`.
+2. Run `yarn dev`.
+3. Verify bot is working by using the `/play` command.
 
-## Test
+## Modules
+Venat is built with modules to allow server owners to select the features they want and help aid in development efforts.
+The modules should be named as follows: venat-module-_area_-_feature_ (e.g. venat-module-xiv-market).
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Help
+Discord server coming soon. For now, please <a href="https://github.com/the-convocation/venat/issues">open an issue</a>.
 
 ## License
-
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the [AGPL-3.0 license](LICENSE).

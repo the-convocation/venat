@@ -1,0 +1,45 @@
+name: Project automations
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+      - closed
+
+env:
+  todo: Todo ✏️
+  in_progress: In Progress 🚧
+  done: Done ✅
+
+jobs:
+  issue_opened:
+    name: issue_opened_or_reopened
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')
+    steps:
+      - name: Move issue to ${{ env.todo }}
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.1
+        with:
+          organization: the-convocation
+          project_id: 1
+          status_value: ${{ env.todo }}
+          gh_app_secret_key: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_SECRET_KEY }}
+          gh_app_ID: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_ID }}
+          gh_app_installation_ID: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_INSTALLATION_ID }}
+          resource_node_id: ${{ github.event.issue.node_id }}
+  issue_closed:
+    name: issue_closed
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'closed'
+    steps:
+      - name: Move issue to ${{ env.done }}
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.1
+        with:
+          organization: the-convocation
+          project_id: 1
+          status_value: ${{ env.done }}
+          gh_app_secret_key: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_SECRET_KEY }}
+          gh_app_ID: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_ID }}
+          gh_app_installation_ID: ${{ secrets.PROJECT_AUTOMATIONS_GH_APP_INSTALLATION_ID }}
+          resource_node_id: ${{ github.event.issue.node_id }}
