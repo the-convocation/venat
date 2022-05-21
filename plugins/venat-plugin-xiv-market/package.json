@@ -1,8 +1,12 @@
 {
-  "name": "@the-convocation/venat-module-xiv-market",
+  "name": "@the-convocation/venat-plugin-xiv-market",
   "version": "0.4.0",
   "packageManager": "yarn@3.2.1",
-  "main": "dist/src/module.js",
+  "main": "dist/src/plugin.js",
+  "venat": {
+    "name": "Market",
+    "description": "A module for searching FFXIV's market data."
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && tsc"

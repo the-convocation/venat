@@ -1,1 +1,0 @@
-# venat-module-example

@@ -1,6 +1,6 @@
 import { DynamicModule, Module, Type } from '@nestjs/common';
 import { ConfigService } from './config.service';
-import { MODULE_PACKAGE_NAME } from '../module-system/module.constants';
+import { PLUGIN_PACKAGE_NAME } from '../plugin-system/plugin.constants';
 import { INQUIRER } from '@nestjs/core';
 import { getDataSourceToken, TypeOrmModule } from '@nestjs/typeorm';
 import { Config } from './entities/config.entity';
@@ -24,7 +24,7 @@ export class ConfigModule {
             }
 
             const packageName: string = Reflect.getMetadata(
-              MODULE_PACKAGE_NAME,
+              PLUGIN_PACKAGE_NAME,
               target.constructor,
             );
 

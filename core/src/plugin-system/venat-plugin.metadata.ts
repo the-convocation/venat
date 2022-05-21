@@ -1,4 +1,4 @@
-export interface VenatModuleMetadata {
+export interface VenatPluginMetadata {
   name: string;
   description?: string;
 }
