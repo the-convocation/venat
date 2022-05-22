@@ -21,22 +21,22 @@ export async function getFashionReportInfographic(
   scraper: Scraper,
   kind: FashionReportKind,
 ): Promise<FashionReportInfo | null> {
-  for await (const tweet of scraper.getTweets('KaiyokoStar', 100, false)) {
-    let pattern: RegExp;
-    switch (kind) {
-      case FashionReportKind.FullDetails:
-        pattern = fullDetailsRegex;
-        break;
-      case FashionReportKind.MaxPoints:
-        pattern = maxPointsRegex;
-        break;
-      case FashionReportKind.Theme:
-        pattern = themeRegex;
-        break;
-      default:
-        throw new Error(`Invalid report kind received: "${kind}"`);
-    }
+  let pattern: RegExp;
+  switch (kind) {
+    case FashionReportKind.FullDetails:
+      pattern = fullDetailsRegex;
+      break;
+    case FashionReportKind.MaxPoints:
+      pattern = maxPointsRegex;
+      break;
+    case FashionReportKind.Theme:
+      pattern = themeRegex;
+      break;
+    default:
+      throw new Error(`Invalid report kind received: "${kind}"`);
+  }
 
+  for await (const tweet of scraper.getTweets('KaiyokoStar', 100, false)) {
     if (tweet.text == null) {
       continue;
     }
