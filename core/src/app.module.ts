@@ -4,7 +4,7 @@ import { ConfigModule as NestConfigModule } from '@nestjs/config';
 import { BotModule } from './bot/bot.module';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './users/users.module';
-import { ModuleLoader } from './module-system/module.loader';
+import { PluginLoader } from './plugin-system/plugin.loader';
 import { SentryModule } from './sentry/sentry.module';
 
 @Module({
@@ -14,7 +14,7 @@ import { SentryModule } from './sentry/sentry.module';
     DatabaseModule,
     UsersModule,
     BotModule,
-    ModuleLoader.findAndLoadModules(),
+    PluginLoader.findAndLoadModules(),
   ],
 })
 export class AppModule {}

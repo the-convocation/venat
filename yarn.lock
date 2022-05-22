@@ -1799,17 +1799,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@the-convocation/venat-module-example@workspace:modules/venat-module-example":
+"@the-convocation/venat-plugin-example@workspace:plugins/venat-plugin-example":
   version: 0.0.0-use.local
-  resolution: "@the-convocation/venat-module-example@workspace:modules/venat-module-example"
+  resolution: "@the-convocation/venat-plugin-example@workspace:plugins/venat-plugin-example"
   dependencies:
     "@the-convocation/venat-core": "workspace:^"
   languageName: unknown
   linkType: soft
 
-"@the-convocation/venat-module-xiv-market@workspace:modules/venat-module-xiv-market":
+"@the-convocation/venat-plugin-xiv-market@workspace:plugins/venat-plugin-xiv-market":
   version: 0.0.0-use.local
-  resolution: "@the-convocation/venat-module-xiv-market@workspace:modules/venat-module-xiv-market"
+  resolution: "@the-convocation/venat-plugin-xiv-market@workspace:plugins/venat-plugin-xiv-market"
   dependencies:
     "@the-convocation/venat-core": "workspace:^"
   languageName: unknown

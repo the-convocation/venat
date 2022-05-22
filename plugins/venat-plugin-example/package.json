@@ -1,8 +1,12 @@
 {
-  "name": "@the-convocation/venat-module-example",
+  "name": "@the-convocation/venat-plugin-example",
   "version": "0.4.0",
   "packageManager": "yarn@3.2.1",
-  "main": "dist/src/module.js",
+  "main": "dist/src/plugin.js",
+  "venat": {
+    "name": "Example Plugin",
+    "description": "This is an example plugin for Venat."
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && tsc"

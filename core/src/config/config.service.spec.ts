@@ -4,7 +4,7 @@ import {
   CONFIG_SUBJECT_TYPE,
   ConfigService,
 } from './config.service';
-import { MODULE_PACKAGE_NAME } from '../module';
+import { PLUGIN_PACKAGE_NAME } from '../module';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Config } from './entities/config.entity';
 import { Repository } from 'typeorm';
@@ -27,7 +27,7 @@ describe('ConfigService', () => {
     await Test.createTestingModule({
       providers: [
         {
-          provide: MODULE_PACKAGE_NAME,
+          provide: PLUGIN_PACKAGE_NAME,
           useValue: 'test',
         },
         {
