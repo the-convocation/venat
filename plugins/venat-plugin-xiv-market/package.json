@@ -1,6 +1,6 @@
 {
   "name": "@the-convocation/venat-plugin-xiv-market",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "packageManager": "yarn@3.2.1",
   "main": "dist/src/plugin.js",
   "venat": {

@@ -1,6 +1,6 @@
 {
   "name": "@the-convocation/venat-core",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "open source ffxiv community discord bot that's incredibly easy to self-host",
   "author": "The Convocation contributors",
   "license": "AGPL-3.0-only",
