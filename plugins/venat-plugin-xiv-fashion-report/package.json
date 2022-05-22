@@ -1,0 +1,20 @@
+{
+    "name": "@the-convocation/venat-plugin-xiv-fashion-report",
+    "version": "0.4.0",
+    "packageManager": "yarn@3.2.1",
+    "main": "dist/src/plugin.js",
+    "venat": {
+        "name": "Fashion Report",
+        "description": "A module for looking up Kaiyoko's Fashion Report."
+    },
+    "scripts": {
+        "clean": "rimraf dist",
+        "build": "yarn clean && tsc"
+    },
+    "dependencies": {
+        "@the-convocation/venat-core": "workspace:^"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
