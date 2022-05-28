@@ -1852,6 +1852,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@the-convocation/venat-plugin-xiv-weather@workspace:plugins/venat-plugin-xiv-weather":
+  version: 0.0.0-use.local
+  resolution: "@the-convocation/venat-plugin-xiv-weather@workspace:plugins/venat-plugin-xiv-weather"
+  dependencies:
+    "@the-convocation/venat-core": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
