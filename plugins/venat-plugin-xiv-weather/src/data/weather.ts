@@ -1,3 +1,4 @@
+import { LocalizedAsyncResource } from './resource';
 import {
   getTerritoryTypeIndex,
   getWeatherIndex,
@@ -66,30 +67,51 @@ async function getTerritoriesLang(lang: Language) {
 }
 
 export type Forecast = {
-  time: Date;
-  weather: {
-    icon: string;
-    name: string;
-  };
-}[];
+  zone: string;
+  forecast: {
+    time: Date;
+    weather: {
+      id: number;
+      icon: string;
+      name: string;
+    };
+  }[];
+};
 
 export class Forecaster {
-  private weathersCache: LocalizedAsyncResource<XIVAPIWeather[]>;
-  private weatherRatesCache: LocalizedAsyncResource<XIVAPIWeatherRate[]>;
-  private territoriesCache: LocalizedAsyncResource<XIVAPITerritoryType[]>;
+  private weathersCache: LocalizedAsyncResource<Language, XIVAPIWeather[]>;
+  private weatherRatesCache: LocalizedAsyncResource<
+    Language,
+    XIVAPIWeatherRate[]
+  >;
+  private territoriesCache: LocalizedAsyncResource<
+    Language,
+    XIVAPITerritoryType[]
+  >;
 
   constructor() {
-    this.weathersCache = new LocalizedAsyncResource<XIVAPIWeather[]>(
+    this.weathersCache = new LocalizedAsyncResource<Language, XIVAPIWeather[]>(
       getWeathersLang,
     );
-    this.weatherRatesCache = new LocalizedAsyncResource<XIVAPIWeatherRate[]>(
-      getWeatherRatesLang,
-    );
-    this.territoriesCache = new LocalizedAsyncResource<XIVAPITerritoryType[]>(
-      getTerritoriesLang,
-    );
+    this.weatherRatesCache = new LocalizedAsyncResource<
+      Language,
+      XIVAPIWeatherRate[]
+    >(getWeatherRatesLang);
+    this.territoriesCache = new LocalizedAsyncResource<
+      Language,
+      XIVAPITerritoryType[]
+    >(getTerritoriesLang);
   }
 
+  /**
+   * Calculates the weather forecast for a zone.
+   * @param zoneName The name of the zone to check.
+   * @param lang The language of the zone name.
+   * @param count The number of forecast entries to return.
+   * @param sampleIncrement The sampling interval to use for jumping between times.
+   * @param initialOffset The offset, in seconds, from the present moment to calculate based on.
+   * @returns The forecast.
+   */
   public async getForecast(
     zoneName: string,
     lang: Language,
@@ -115,7 +137,7 @@ export class Forecaster {
 
     const forecast = [];
     for (let i = 0; i < count; i++) {
-      const time = new Date(startTime.valueOf() + sampleIncrement * 1000);
+      const time = new Date(startTime.valueOf() + sampleIncrement * i * 1000);
 
       const target = this.calculateTarget(time);
       if (target < 0 || target > 99) {
@@ -141,18 +163,27 @@ export class Forecaster {
       }
 
       forecast.push({
-        time: startTime,
+        time,
         weather: {
-          icon: weather.Icon,
+          id: weather.ID,
+          icon: `https://xivapi.com${weather.Icon}`,
           name: weather.Name,
         },
       });
     }
 
-    return forecast;
+    return {
+      zone: territory.PlaceName?.Name ?? '',
+      forecast,
+    };
   }
 
-  private getCurrentWeatherStartTime(initialOffset: number): Date {
+  /**
+   * Calculates the current weather's start time.
+   * @param initialOffset The offset, in seconds, from the present moment to calculate based on.
+   * @returns The start time of the current weather.
+   */
+  private getCurrentWeatherStartTime(initialOffset = 0): Date {
     const now = new Date();
     now.setUTCMilliseconds(0);
     now.setUTCSeconds(now.getUTCSeconds() + initialOffset);
@@ -164,6 +195,11 @@ export class Forecaster {
     return now;
   }
 
+  /**
+   * Calculates the weather rate target for the provided time.
+   * @param time The time to calculate the target value for.
+   * @returns The time's weather rate target, which can be in the range [0, 100).
+   */
   private calculateTarget(time: Date): number {
     const unix = Math.trunc(time.valueOf() / 1000);
     const bell = Math.trunc(unix / 175);
@@ -179,10 +215,20 @@ export class Forecaster {
     return step2 % 0x64;
   }
 
+  /**
+   * Returns the weather ID for the provide weather rate and rate target.
+   * @param weatherRate The weather rate data to reference.
+   * @param target The weather rate target.
+   * @returns The ID of the weather corresponding to the rate target.
+   */
   private getWeatherIdForRateTarget(
     weatherRate: XIVAPIWeatherRate,
     target: number,
   ): number | null {
+    if (target < 0 || target > 99) {
+      throw new Error('Weather rate target is outside of the range [0, 100).');
+    }
+
     let cumulativeRate = 0;
     for (let i = 0; i < weatherRate.Rates.length; i++) {
       cumulativeRate += weatherRate.Rates[i];
@@ -191,7 +237,7 @@ export class Forecaster {
       }
     }
 
-    return null;
+    throw new Error('Weather rates are poorly-formed or invalid!');
   }
 
   private async getWeather(
@@ -223,48 +269,5 @@ export class Forecaster {
       (t) => t.PlaceName?.Name?.toLowerCase() === nameLower,
     );
     return territory;
-  }
-}
-
-class LocalizedAsyncResource<T> {
-  private resourceLangs: Map<Language, CachedAsyncResource<T>>;
-  private getFn: (lang: Language) => Promise<T>;
-
-  constructor(getFn: (lang: Language) => Promise<T>) {
-    this.resourceLangs = new Map<Language, CachedAsyncResource<T>>();
-    this.getFn = getFn;
-  }
-
-  public async get(lang: Language): Promise<T> {
-    if (!this.resourceLangs.has(lang)) {
-      this.resourceLangs.set(
-        lang,
-        new CachedAsyncResource<T>(() => this.getFn(lang)),
-      );
-    }
-
-    const resourceLang = this.resourceLangs.get(lang);
-    if (resourceLang == null) {
-      throw new Error('Resource language was null.');
-    }
-
-    return await resourceLang?.get();
-  }
-}
-
-class CachedAsyncResource<T> {
-  data?: T;
-  getFn: () => Promise<T>;
-
-  constructor(getFn: () => Promise<T>) {
-    this.getFn = getFn;
-  }
-
-  public async get(): Promise<T> {
-    if (this.data == null) {
-      this.data = await this.getFn();
-    }
-
-    return this.data;
   }
 }
