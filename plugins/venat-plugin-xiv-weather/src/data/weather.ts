@@ -210,6 +210,11 @@ export class Forecaster {
     const calcBase = totalDays * 0x64 + increment;
 
     const step1 = (calcBase << 0xb) ^ calcBase;
+
+    // JS doesn't have unsigned numbers, so this XOR
+    // will cause our result to be negative. We do an
+    // unsigned right shift of 0 bits to truncate the
+    // value to its 32 least significant bits.
     const step2 = ((step1 >>> 8) ^ step1) >>> 0;
 
     return step2 % 0x64;
