@@ -147,12 +147,6 @@ export class Forecaster {
       }
 
       const weatherId = this.getWeatherIdForRateTarget(weatherRate, target);
-      if (weatherId == null) {
-        throw new Error(
-          `Weather for rate index ${weatherRate.ID} (territoryId=${territory.ID}) could not be found.`,
-        );
-      }
-
       const weather = await this.getWeather(weatherId, lang);
       if (weather == null) {
         throw new Error(`Weather ${weatherId} could not be found.`);
@@ -229,7 +223,7 @@ export class Forecaster {
   private getWeatherIdForRateTarget(
     weatherRate: XIVAPIWeatherRate,
     target: number,
-  ): number | null {
+  ): number {
     if (target < 0 || target > 99) {
       throw new Error('Weather rate target is outside of the range [0, 100).');
     }
