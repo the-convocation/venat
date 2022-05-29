@@ -210,7 +210,7 @@ export class Forecaster {
     const calcBase = totalDays * 0x64 + increment;
 
     const step1 = (calcBase << 0xb) ^ calcBase;
-    const step2 = (step1 >> 8) ^ step1;
+    const step2 = ((step1 >>> 8) ^ step1) >>> 0;
 
     return step2 % 0x64;
   }
