@@ -1852,6 +1852,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@the-convocation/venat-plugin-xiv-weather@workspace:plugins/venat-plugin-xiv-weather":
+  version: 0.0.0-use.local
+  resolution: "@the-convocation/venat-plugin-xiv-weather@workspace:plugins/venat-plugin-xiv-weather"
+  dependencies:
+    "@the-convocation/venat-core": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -3626,6 +3634,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"colorthief@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "colorthief@npm:2.3.2"
+  dependencies:
+    get-pixels: ^3.3.2
+    quantize: "github:lokesh/quantize"
+  checksum: e33180f95004dc6246bdaeec19e26804015e509d3c9f114ce9624455f369f4ec9cade2a23f68cd43e4316bb6a6dc916201cd1d8650277635f3b104e3d71d3166
+  languageName: node
+  linkType: hard
+
 "columnify@npm:^1.6.0":
   version: 1.6.0
   resolution: "columnify@npm:1.6.0"
@@ -3964,6 +3982,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cwise-compiler@npm:^1.1.2":
+  version: 1.1.3
+  resolution: "cwise-compiler@npm:1.1.3"
+  dependencies:
+    uniq: ^1.0.0
+  checksum: 6c8ed75ad5472f738411e3388a0d8dbc8d5e25b8e6bb2a2c38d275e1dc94d53120f87523f703a21a265e11ee7839eb2bb98a48eee409f663866e84ea06cf992f
+  languageName: node
+  linkType: hard
+
 "cz-conventional-changelog@npm:3.2.0":
   version: 3.2.0
   resolution: "cz-conventional-changelog@npm:3.2.0"
@@ -4013,6 +4040,13 @@ __metadata:
   dependencies:
     assert-plus: ^1.0.0
   checksum: 3634c249570f7f34e3d34f866c93f866c5b417f0dd616275decae08147dcdf8fccfaa5947380ccfb0473998ea3a8057c0b4cd90c875740ee685d0624b2983598
+  languageName: node
+  linkType: hard
+
+"data-uri-to-buffer@npm:0.0.3":
+  version: 0.0.3
+  resolution: "data-uri-to-buffer@npm:0.0.3"
+  checksum: c85bc1e2783ee433c24714e7b7f09eb8c9e9e853a30724985ad8419ca3c519cb5758278cf224f42543f7bd9eadc7e2ec82ca26e6c3539854e74cbda30801cd7b
   languageName: node
   linkType: hard
 
@@ -5172,6 +5206,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"get-pixels@npm:^3.3.2":
+  version: 3.3.3
+  resolution: "get-pixels@npm:3.3.3"
+  dependencies:
+    data-uri-to-buffer: 0.0.3
+    jpeg-js: ^0.4.1
+    mime-types: ^2.0.1
+    ndarray: ^1.0.13
+    ndarray-pack: ^1.1.1
+    node-bitmap: 0.0.1
+    omggif: ^1.0.5
+    parse-data-uri: ^0.2.0
+    pngjs: ^3.3.3
+    request: ^2.44.0
+    through: ^2.3.4
+  checksum: 0b5783f5212ddb4d8a9d63e92c4147b7920c7d1fda8f29b1ec2f36824292300ad73eb67bab682965882196c92e25f756ab4181f64ea591053f9f23447b88c477
+  languageName: node
+  linkType: hard
+
 "get-pkg-repo@npm:^4.0.0":
   version: 4.2.1
   resolution: "get-pkg-repo@npm:4.2.1"
@@ -5905,6 +5958,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"iota-array@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "iota-array@npm:1.0.0"
+  checksum: e537c236d95e835f73dc59d725bd3eee9a722a2e7b596ff1cc2a91dd9781f82318040321d5839f1e1d4ace1411134200d443bb22dc2ab0ee4da7e03a4f74b73d
+  languageName: node
+  linkType: hard
+
 "ip@npm:^1.1.5":
   version: 1.1.8
   resolution: "ip@npm:1.1.8"
@@ -5925,6 +5985,13 @@ __metadata:
   dependencies:
     binary-extensions: ^2.0.0
   checksum: 84192eb88cff70d320426f35ecd63c3d6d495da9d805b19bc65b518984b7c0760280e57dbf119b7e9be6b161784a5a673ab2c6abe83abb5198a432232ad5b35c
+  languageName: node
+  linkType: hard
+
+"is-buffer@npm:^1.0.2":
+  version: 1.1.6
+  resolution: "is-buffer@npm:1.1.6"
+  checksum: 4a186d995d8bbf9153b4bd9ff9fd04ae75068fe695d29025d25e592d9488911eeece84eefbd8fa41b8ddcc0711058a71d4c466dcf6f1f6e1d83830052d8ca707
   languageName: node
   linkType: hard
 
@@ -6679,6 +6746,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jpeg-js@npm:^0.4.1":
+  version: 0.4.3
+  resolution: "jpeg-js@npm:0.4.3"
+  checksum: 9e5bacc9135efa7da340b62e81fa56fab0c8516ef617228758132af5b7d31b516cc6e1500cdffb82d3161629be341be980099f2b37eb76b81e26db6e3e848c77
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -7327,7 +7401,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime-types@npm:^2.1.12, mime-types@npm:^2.1.27, mime-types@npm:~2.1.19":
+"mime-types@npm:^2.0.1, mime-types@npm:^2.1.12, mime-types@npm:^2.1.27, mime-types@npm:~2.1.19":
   version: 2.1.35
   resolution: "mime-types@npm:2.1.35"
   dependencies:
@@ -7588,6 +7662,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ndarray-pack@npm:^1.1.1":
+  version: 1.2.1
+  resolution: "ndarray-pack@npm:1.2.1"
+  dependencies:
+    cwise-compiler: ^1.1.2
+    ndarray: ^1.0.13
+  checksum: 455030bebc428a2b1bdf5fe9f65ad5b1dd0bec4f64d30d20f50647598c5eaa7439450dbada51acc25094bcc605e98c6057c1b293c94312c13a830b5ac2ae5112
+  languageName: node
+  linkType: hard
+
+"ndarray@npm:^1.0.13":
+  version: 1.0.19
+  resolution: "ndarray@npm:1.0.19"
+  dependencies:
+    iota-array: ^1.0.0
+    is-buffer: ^1.0.2
+  checksum: 2f8ac89f0bcfc4b831677909d1326971e35419162811a74ddb5dfab2cb6204b8625a11cd5dcff60b0fa10071809af7dc367e6191703507f8cdf23856ccce5b0c
+  languageName: node
+  linkType: hard
+
 "negotiator@npm:^0.6.3":
   version: 0.6.3
   resolution: "negotiator@npm:0.6.3"
@@ -7599,6 +7693,13 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: deac9f8d00eda7b2e5cd1b2549e26e10a0faa70adaa6fdadca701cc55f49ee9018e427f424bac0c790b7c7e2d3068db97f3093f1093975f2acb8f8818b936ed9
+  languageName: node
+  linkType: hard
+
+"node-bitmap@npm:0.0.1":
+  version: 0.0.1
+  resolution: "node-bitmap@npm:0.0.1"
+  checksum: 4e30bbd22e1e9f7f6c89cfc4fe8b221a198b7ca9311aeb6e19a6c3e98724e11c3536740b12b4f36b26a24770014b16d49c0af84a8d89ee596ba02172260e4c0e
   languageName: node
   linkType: hard
 
@@ -7914,6 +8015,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"omggif@npm:^1.0.5":
+  version: 1.0.10
+  resolution: "omggif@npm:1.0.10"
+  checksum: 15102e46b6fa0fba32d7e948f702623cdc3cdcdfd64b2d33c6e29a61f366ffd0f250da55d66f5217dce5b93ba9c67763fa998652791a5c7f2201a3bde2c4db45
+  languageName: node
+  linkType: hard
+
 "once@npm:1.4.0, once@npm:^1.3.0, once@npm:^1.3.1, once@npm:^1.4.0":
   version: 1.4.0
   resolution: "once@npm:1.4.0"
@@ -8209,6 +8317,15 @@ __metadata:
   dependencies:
     callsites: ^3.0.0
   checksum: 6ba8b255145cae9470cf5551eb74be2d22281587af787a2626683a6c20fbb464978784661478dd2a3f1dad74d1e802d403e1b03c1a31fab310259eec8ac560ff
+  languageName: node
+  linkType: hard
+
+"parse-data-uri@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "parse-data-uri@npm:0.2.0"
+  dependencies:
+    data-uri-to-buffer: 0.0.3
+  checksum: 6e8d76eb4b72552d27cefdbb36f33a246af644640b69367a1db691c0dc6fd60b077f603b19379704e58c80007c3953f26d6b75ca5816a2e6edcb0575bcff518d
   languageName: node
   linkType: hard
 
@@ -8525,6 +8642,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pngjs@npm:^3.3.3":
+  version: 3.4.0
+  resolution: "pngjs@npm:3.4.0"
+  checksum: 8bd40bd698abd16b72c97b85cb858c80894fbedc76277ce72a784aa441e14795d45d9856e97333ca469b34b67528860ffc8a7317ca6beea349b645366df00bcd
+  languageName: node
+  linkType: hard
+
 "postgres-array@npm:~2.0.0":
   version: 2.0.0
   resolution: "postgres-array@npm:2.0.0"
@@ -8719,6 +8843,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"quantize@github:lokesh/quantize":
+  version: 1.2.0
+  resolution: "quantize@https://github.com/lokesh/quantize.git#commit=f572abd2646b5944852535c8a26fdb958a5d7c4b"
+  checksum: 83d4b8d7bdf32457fbb53c3920d24bb09892e9cc52df99d0ead381d00518d6d9a496529fc79e4041808ffaf7b81fcbc1e642c3d825827fb17d1970086002e072
+  languageName: node
+  linkType: hard
+
 "query-string@npm:^6.13.8":
   version: 6.14.1
   resolution: "query-string@npm:6.14.1"
@@ -8909,7 +9040,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"request@npm:^2.88.0":
+"request@npm:^2.44.0, request@npm:^2.88.0":
   version: 2.88.2
   resolution: "request@npm:2.88.2"
   dependencies:
@@ -10503,6 +10634,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"uniq@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "uniq@npm:1.0.1"
+  checksum: 8206535f83745ea83f9da7035f3b983fd6ed5e35b8ed7745441944e4065b616bc67cf0d0a23a86b40ee0074426f0607f0a138f9b78e124eb6a7a6a6966055709
+  languageName: node
+  linkType: hard
+
 "unique-filename@npm:^1.1.1":
   version: 1.1.1
   resolution: "unique-filename@npm:1.1.1"
@@ -10669,6 +10807,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
     axios: ^0.27.2
+    colorthief: ^2.3.2
     commitizen: ^4.2.4
     cz-conventional-changelog: ^3.3.0
     discord.js: ^13.6.0
